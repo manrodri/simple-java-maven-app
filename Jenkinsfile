@@ -5,11 +5,6 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
-
-    options {
-        skipStagesAfterUnstable()
-    }
-
     stages {
         stage('Build') {
             steps {
@@ -25,14 +20,6 @@ pipeline {
                     junit 'target/surefire-reports/*.xml' 
                 }
             }
-            stage('Deliver') { 
-            steps {
-                steps{
-                    sh './jenkins/scripts/deliver.sh' 
-                }
-                
-            }
-        }
         }
     }
 }
